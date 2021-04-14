@@ -81,6 +81,15 @@ ESX.RegisterServerCallback('linden_inventory:setup', function(source, cb)
 	cb(data)
 end)
 
+RegisterNetEvent('linden-inventory:checktrabajo')
+AddEventHandler('linden-inventory:checktrabajo', function(statusjob)
+	local src = source
+	local xPlayer = ESX.GetPlayerFromId(src)
+	statusjob = xPlayer.getJob().label
+	TriggerClientEvent("LRP-inventory:checktrabajo",src,statusjob)
+
+end)
+
 AddEventHandler('onResourceStart', function(resourceName)
 	if (GetCurrentResourceName() == resourceName) then
 		if ESX == nil then return end
